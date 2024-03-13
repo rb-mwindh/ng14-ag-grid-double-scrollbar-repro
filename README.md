@@ -1,27 +1,28 @@
 # Ng14AgGridPositionBugRepro
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.11.
+This project is meant to reproduce an issue with AG Grid 31.1.x and Angular 14.
 
-## Development server
+## Problem description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The issue at hand involves the use of AG Grid within a custom scroll viewport,
+e.g., a `<main>` element styled with `height: 100vh` and `overflow: auto`.
 
-## Code scaffolding
+In certain circumstances, this setup results in the appearance of **double scrollbars**.
+This issue has been observed in both **Google Chrome** and **Microsoft Edge**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Firefox does not seem to be affected**
 
-## Build
+## How to reproduce
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The problem arises when the AG Grid element is rendered far down the page,
+beyond the visible top of the screen.
+It can be reproduced by adjusting the viewport height,
+which can be done by scaling the developer tools bottom bar.
 
-## Running unit tests
+Interestingly, the issue disappears when the **scroll container is given a relative position** (`position: relative`).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The root cause of this behavior appears to be the `.ag-aria-description-container` div,
+which is positioned absolutely.
+This absolute positioning seems to interfere with the scroll behavior,
+leading to the double scrollbar issue.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
