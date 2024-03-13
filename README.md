@@ -26,3 +26,4 @@ which is positioned absolutely.
 This absolute positioning seems to interfere with the scroll behavior,
 leading to the double scrollbar issue.
 
+https://github.com/rb-mwindh/ng14-ag-grid-double-scrollbar-repro/assets/44254831/892c8b90-9a4c-4f67-b768-cd1b1b3a8070
