@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AgGridModule } from 'ag-grid-angular';
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
-    AgGridModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'ag-grid', pathMatch: 'full' },
+      {
+        path: 'ag-grid',
+        loadChildren: () => import('./ag-grid-repro/ag-grid-repro.module').then(m => m.AgGridReproModule),
+      },
+      {
+        path: 'html-only',
+        loadChildren: () => import('./html-only-repro/html-only-repro.module').then(m => m.HtmlOnlyReproModule),
+      },
+    ]),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [ AppComponent ],
+  bootstrap: [ AppComponent ],
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -2,6 +2,8 @@
 
 This project is meant to reproduce an issue with AG Grid 31.1.x and Angular 14.
 
+_Addition: The issue is NOT related to AG Grid, but rather to the Chromium Engine!_
+
 ## Problem description
 
 The issue at hand involves the use of AG Grid within a custom scroll viewport,
